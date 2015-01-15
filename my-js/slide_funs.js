@@ -30,6 +30,7 @@ var slide_interval = 12;						// change inteval, seconds
 //-------------------------------------------------------------------------------
 			
 function slide_init() {
+	$('.slide').css('top',$(".slide_top_level").offset().top+'px');
 	$('.points_line').children('li').click( function(e) {
 		$('.slide_show').hide();
 		var index;
