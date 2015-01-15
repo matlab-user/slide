@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+		<meta charset="UTF-8" http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>wangdehui</title>
+	
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<!--<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>-->
+		<script src="js-lib/jquery-2.1.1.min.js"></script>
+			
+		<style type='text/css'>
+			html {-webkit-text-size-adjust:none}
+			body {margin:0 auto;color:#333;background:#e0e0e0;font-size:14px;font-family:"Microsoft Yahei","Helvetica Neue",Helvetica,Arial,sans-serif;line-height:24px;cursor:default}
+		</style> 
+		
+		<script>
+			// user custom
+			var b_image = '';						// div.slide background-image
+			var slide_top_width = '';				// div.slide_top_level's width
+			var slide_top_height = '400px';			// div.slide_top_level's height
+			
+		</script>
+
+		<script>		
+			$( function() {
+				$('.points_line').children('li').click( function(e) {
+					var obj = e.target;
+					var j_obj = $(obj);
+					switch(obj.tagName) {
+						case 'A':
+							console.log( j_obj.html() );
+							$('.points_line').find('li').removeClass('current');
+							$(obj).parent('li').addClass('current');
+							break;
+						case 'LI':
+							$('.points_line').find('li').removeClass('current');
+							j_obj.addClass('current');
+							var j_a = j_obj.children('a');
+							console.log(j_a.html());
+							break;
+						default:
+							break;
+					}
+					
+				} );
+				
+				var main = $('.slide_top_level');
+				if( slide_top_height.length>0 )
+					main.css('height',slide_top_height);
+				
+				$('.slide').css('height',main.height()+'px');
+
+				
+				setInterval( 'change();',12*1000 );
+			} );
+			
+
+			function change() {
+				var cur_li = $('.points_line .current');
+				var next_li = cur_li.next('li');
+				if( next_li.length<=0 )
+					next_li = $('.points_line li:first');
+				
+				$('.points_line li').removeClass('current');
+				next_li.addClass('current');
+			}
+			
+			
+		</script>
+		
+    </head>
+	
+	<body>
+		<div class='slide_top_level'>
+			<div class='slide'>
+				<ul class='points_line'>
+					<li class='point'><a>1</a></li>
+					<li class='point'><a>2</a></li>
+					<li class='point'><a>3</a></li>
+					<li class='point current'><a>4</a></li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
